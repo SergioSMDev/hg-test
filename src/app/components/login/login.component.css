@@ -1,0 +1,22 @@
+.login {
+  display: flex;
+  justify-content: center;
+}
+
+form > * {
+  margin: 15px 0;
+}
+
+input {
+  border: none;
+  border-bottom: 1px solid #ccc;
+}
+
+.field {
+  display: flex;
+  margin: 10px 0;
+}
+
+button {
+  padding: 5px;
+}

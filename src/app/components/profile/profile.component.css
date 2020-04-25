@@ -1,0 +1,11 @@
+.profile{
+  padding: 10px;
+}
+
+.profile > * {
+  padding: 5px 0;
+}
+
+.profile > :not(:last-child) {
+  border-bottom: 1px solid black;
+}

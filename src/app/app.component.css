@@ -1,27 +1,22 @@
-ul {
-  list-style-type: none;
-  overflow: hidden;
+.menu {
+  display: flex;
   background-color: #333;
 }
 
-li {
-  /*float: left;*/
-  display: inline-block;
-}
-
-li a {
-  display: block;
+.menu a {
+  display: flex;
+  padding: 1.5em;
+  align-items: center;
   color: white;
-  text-align: center;
-  padding: 14px 16px;
+  word-break: break-all;
   text-decoration: none;
 }
 
-li a:hover {
+.menu a:hover {
   background-color: #111;
 }
 
 .active{
-  background-color: #b90505;
+  background-color: #b90505!important;
 }
 
