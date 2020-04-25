@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "hg-test"
+    }
+  },
+  "defaultProject": "hg-test",
+  "cli": {
+    "analytics": "a80f4bc6-0b08-422b-a9b4-80c48e9727c6"
+  }
 }
