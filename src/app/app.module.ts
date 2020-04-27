@@ -7,6 +7,8 @@ import {NewsService} from './core/news.service';
 import {NewsComponent} from './components/news/news.component';
 import {ProfileComponent} from './components/profile/profile.component';
 import {LoginComponent} from './components/login/login.component';
+import {ReactiveFormsModule} from '@angular/forms';
+import { HeaderComponent } from './components/header/header.component';
 
 @NgModule({
   declarations: [
@@ -14,9 +16,11 @@ import {LoginComponent} from './components/login/login.component';
     NewsComponent,
     ProfileComponent,
     LoginComponent,
+    HeaderComponent,
   ],
   imports: [
     BrowserModule,
+    ReactiveFormsModule,
     AppRoutingModule,
   ],
   providers: [NewsService],

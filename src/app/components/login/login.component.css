@@ -1,22 +1,62 @@
-.login {
-  display: flex;
-  justify-content: center;
+input {
+  border: none;
+  border-bottom: 1px solid #ccc;
+}
+
+button {
+  padding: 5px;
+}
+
+form {
+  border: 1px solid #ccc;
+  margin: 10px auto;
+  padding: 10px;
+  border-radius: 10px;
 }
 
 form > * {
   margin: 15px 0;
 }
 
-input {
-  border: none;
-  border-bottom: 1px solid #ccc;
+form .fields {
+  margin-left: 15px;
 }
 
 .field {
   display: flex;
+  justify-content: space-between;
   margin: 10px 0;
 }
 
-button {
-  padding: 5px;
+.login {
+  display: flex;
+}
+
+.invalid {
+color: red;
+}
+
+.modal-fail {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(37, 37, 37, 0.66);
+}
+
+.modal-fail div {
+  display: flex;
+  width: 60%;
+  height: 40%;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 1.5em;
+  line-height: 1.5;
+  background-color: white;
+  border-radius: 30px;
 }

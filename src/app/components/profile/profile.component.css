@@ -1,11 +1,31 @@
-.profile{
+.profile-text{
   padding: 10px;
 }
 
-.profile > * {
+.profile-text > * {
   padding: 5px 0;
 }
 
-.profile > :not(:last-child) {
+.profile-text > :not(:last-child) {
   border-bottom: 1px solid black;
 }
+
+.profile {
+  display: flex;
+  align-items: flex-start;
+}
+
+@media (max-width: 500px) {
+  .profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+img {
+  border-radius: 50%;
+  padding-top: 10px;
+  padding-left: 10px;
+}
+

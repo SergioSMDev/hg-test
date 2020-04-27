@@ -1,36 +1,40 @@
 <div class="login">
-
-  <form>
+  <div class="modal-fail" *ngIf="isInvalidModal">
+    <div>Username or password is incorrect</div>
+  </div>
+  <form [formGroup]="loginForm" (ngSubmit)="submit()" novalidate>
     <h2>You should log in</h2>
-
     <div class="fields">
-
       <div class="field">
           <span>User name: </span>
-          <input type="text">
+        <div>
+          <input formControlName="userName">
+        </div>
       </div>
 
       <div class="field">
           <span>Email: </span>
           <div>
-            <input type="email">
-            <div class="invalid">error</div>
+            <input formControlName="email">
+            <div class="invalid" *ngIf="loginForm.controls['email'].touched && loginForm.controls['email'].invalid">incorrect email</div>
           </div>
       </div>
 
       <div class="field">
           <span>Password: </span>
           <div>
-            <input type="password">
-            <div class="invalid">error</div>
+            <input type="password" formControlName="password">
+            <div class="invalid" *ngIf="loginForm.controls['password'].touched && loginForm.controls['password'].invalid">min length 4 symbols</div>
           </div>
       </div>
 
       <div class="field">
           <span>Confirm password: </span>
           <div>
-            <input type="password">
-            <div class="invalid">error</div>
+            <input type="password" formControlName="confirmPassword">
+            <div class="invalid" *ngIf="loginForm.controls['confirmPassword'].touched &&
+                loginForm.get('confirmPassword').hasError('required') ||
+                (loginForm.controls['confirmPassword'].value !== loginForm.controls['password'].value)">should be the same as password</div>
           </div>
       </div>
     </div>

@@ -95,6 +95,5 @@ export class NewsService {
         'TestBed.inject(ChangeDetectorRef) // returns ChangeDetectorRef\n' +
         'Currently, TestBed.get is not type-safe. Fixing TestBed.get would introduce a massive breaking change, so the Angular team decided to replace it with TestBed.inject.',
     },
-
   ];
 }

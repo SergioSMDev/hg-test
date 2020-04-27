@@ -1,23 +1,27 @@
-import { Component, OnInit } from '@angular/core';
-import {NewsService} from '../../core/news.service';
-
-interface News {
-    title: string;
-    body: string;
-}
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
+import {Subscription} from 'rxjs';
+import {News} from '../../shared/models';
 
 @Component({
   selector: 'app-news',
   templateUrl: './news.component.html',
   styleUrls: ['./news.component.css']
 })
-export class NewsComponent implements OnInit {
+export class NewsComponent implements OnInit, OnDestroy {
+  private sub: Subscription;
   newsDB: News[];
 
-  constructor(private newsService: NewsService) { }
+  constructor(private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.newsDB = this.newsService.newsList;
+    this.sub = this.route.data.subscribe(data => {
+      this.newsDB = data.news;
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.sub.unsubscribe();
   }
 
 }
