@@ -1,0 +1,9 @@
+<header>
+  <nav>
+    <div class="menu">
+      <a [routerLink]="['/']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a>
+      <a [routerLink]="['/news']" routerLinkActive="active" [ngClass]="{'active-delay': appService.newsChangeColor}" (click)="changeColor()">News</a>
+      <a [routerLink]="['/profile']" routerLinkActive="active">Profile</a>
+    </div>
+  </nav>
+</header>

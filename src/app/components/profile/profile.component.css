@@ -29,3 +29,7 @@ img {
   padding-left: 10px;
 }
 
+h3 {
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
