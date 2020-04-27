@@ -4,6 +4,7 @@ import {environment} from '../../../environments/environment';
 import {Login} from '../../shared/models';
 import {Router} from '@angular/router';
 import {AuthService} from '../../shared/auth.service';
+import {AppService} from '../../shared/app.service';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +16,10 @@ export class LoginComponent implements OnInit {
   loginConfig: Login;
   isInvalidModal = false;
 
-  constructor(private fb: FormBuilder, private router: Router, private authSevice: AuthService) { }
+  constructor(private fb: FormBuilder,
+              private router: Router,
+              private authService: AuthService,
+              private appService: AppService) { }
 
   ngOnInit(): void {
     this.loginConfig = environment.loginConfig;
@@ -36,11 +40,12 @@ export class LoginComponent implements OnInit {
   }
   submit(){
     if (this.isValidLogin()){
-      this.authSevice.authorize();
+      this.authService.authorize();
       this.router.navigate(['/profile']);
     } else {
-      this.authSevice.unauthorize();
+      this.authService.unauthorize();
       this.isInvalidModal = true;
+      this.appService.newsChangeColor = false;
       setTimeout(() => (this.isInvalidModal = false), 2000);
     }
   }
