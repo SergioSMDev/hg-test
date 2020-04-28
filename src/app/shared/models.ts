@@ -10,7 +10,8 @@ export interface Login {
 
 export interface Profile {
   name: string;
-  position: string;
-  imgUrl: string;
-  description: string;
+  email?: string;
+  position?: string;
+  imgUrl?: string;
+  description?: string;
 }

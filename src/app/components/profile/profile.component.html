@@ -3,7 +3,7 @@
     <img [src]="profileData.imgUrl || defaultImage">
     <div class="profile-text">
       <h1>{{profileData?.name}}</h1>
-      <h3>{{profileData?.position}}</h3>
+      <h3>{{profileData?.email || profileData?.position}}</h3>
       <p>{{profileData?.description}}</p>
     </div>
   </div>

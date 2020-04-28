@@ -1,8 +1,8 @@
 <div class="login">
-  <div class="modal-fail" *ngIf="isInvalidModal">
-    <div>Username or password is incorrect</div>
+  <div *ngIf="isInvalidModal" class="modal-fail">
+    <div>{{text}}</div>
   </div>
-  <form [formGroup]="loginForm" (ngSubmit)="submit()" novalidate>
+  <form (ngSubmit)="submit()" [formGroup]="loginForm" novalidate>
     <h2>You should log in</h2>
     <div class="fields">
       <div class="field">
@@ -16,28 +16,35 @@
           <span>Email: </span>
           <div>
             <input formControlName="email">
-            <div class="invalid" *ngIf="loginForm.controls['email'].touched && loginForm.controls['email'].invalid">incorrect email</div>
+            <div *ngIf="loginForm.controls['email'].touched && loginForm.controls['email'].invalid" class="invalid">
+              incorrect email
+            </div>
           </div>
       </div>
 
       <div class="field">
           <span>Password: </span>
           <div>
-            <input type="password" formControlName="password">
-            <div class="invalid" *ngIf="loginForm.controls['password'].touched && loginForm.controls['password'].invalid">min length 4 symbols</div>
+            <input formControlName="password" type="password">
+            <div *ngIf="loginForm.controls['password'].touched && loginForm.controls['password'].invalid"
+                 class="invalid">min length 4 symbols
+            </div>
           </div>
       </div>
 
       <div class="field">
           <span>Confirm password: </span>
           <div>
-            <input type="password" formControlName="confirmPassword">
-            <div class="invalid" *ngIf="loginForm.controls['confirmPassword'].touched &&
+            <input formControlName="confirmPassword" type="password">
+            <div *ngIf="loginForm.controls['confirmPassword'].touched &&
                 loginForm.get('confirmPassword').hasError('required') ||
-                (loginForm.controls['confirmPassword'].value !== loginForm.controls['password'].value)">should be the same as password</div>
+                (loginForm.controls['confirmPassword'].value !== loginForm.controls['password'].value)" class="invalid">
+              should be the same as password
+            </div>
           </div>
       </div>
     </div>
     <button type="submit">SUBMIT</button>
+    <button (click)="clearData()" type="button">Clear</button>
   </form>
 </div>
