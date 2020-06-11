@@ -1,25 +1,41 @@
 import {LoginActionTypes} from './login.actions';
+import * as fromRoot from '../../../store/app.state';
+import { createFeatureSelector, createSelector } from '@ngrx/store';
 
-const initialState = {
-  login: {
-    username: '',
-    password: '',
-  }
+export interface State extends fromRoot.State {
+  login: LoginState;
+}
+
+export interface LoginState {
+  username: string;
+  email: string;
+  password: string;
+}
+
+const initialState: LoginState = {
+  username: '',
+  email: '',
+  password: '',
 };
 
-export function loginReducer(state = initialState, action) {
+
+const getLoginState = createFeatureSelector<LoginState>('login');
+export const getLoginData = createSelector(getLoginState, login => login);
+
+export function loginReducer(state = initialState, action): LoginState {
   switch (action.type) {
 
     case LoginActionTypes.SaveLogin:
       return {
         ...state,
-        login: {...action.payload}
+        ...action.payload
       };
 
     case LoginActionTypes.ClearLogin:
       return {
-        ...state,
-        login: null
+        username: '',
+        email: '',
+        password: '',
       };
 
     default:

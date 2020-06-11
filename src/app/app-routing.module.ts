@@ -6,7 +6,7 @@ import {AuthGuard} from './shared/auth.guard';
 import {NewsResolver} from './shared/news.resolver';
 
 const routes: Routes = [
-  {path: 'login', loadChildren: () => import('./components/login/login.module').then(m => m.LoginModule)}, // component: LoginComponent},
+  {path: 'login', loadChildren: () => import('./components/login/login.module').then(m => m.LoginModule)}, 
   {path: 'news', component: NewsComponent, canActivate: [AuthGuard], resolve: {news: NewsResolver}},
   {path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]},
 ];

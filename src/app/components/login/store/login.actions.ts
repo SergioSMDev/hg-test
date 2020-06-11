@@ -1,5 +1,5 @@
 import {Action} from '@ngrx/store';
-import {Login} from '../../../shared/models';
+import {LoginState} from './login.reducer';
 
 export enum LoginActionTypes {
   SaveLogin = '[Login] Save Login',
@@ -9,7 +9,7 @@ export enum LoginActionTypes {
 export class SaveLogin implements Action {
   readonly type = LoginActionTypes.SaveLogin;
 
-  constructor(public payload: Login) {
+  constructor(public payload: LoginState) {
   }
 }
 

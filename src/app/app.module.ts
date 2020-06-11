@@ -24,7 +24,7 @@ import {StoreModule} from '@ngrx/store';
     BrowserModule,
     AppRoutingModule,
     StoreModule.forRoot({}, {}),
-    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
+    StoreDevtoolsModule.instrument({maxAge: 10, logOnly: environment.production}),
     EffectsModule.forRoot([]),
     StoreRouterConnectingModule.forRoot(),
   ],

@@ -9,6 +9,11 @@ import {select, Store} from '@ngrx/store';
 import {Subject} from 'rxjs';
 import {takeUntil} from 'rxjs/operators';
 import * as loginActions from './store/login.actions';
+import * as fromLogin from './store/login.reducer';
+
+// username: Admin
+// password: 12345
+
 
 @Component({
   selector: 'app-login',
@@ -26,7 +31,7 @@ export class LoginComponent implements OnInit, OnDestroy {
               private router: Router,
               private authService: AuthService,
               private appService: AppService,
-              private store: Store<any>) {
+              private store: Store<fromLogin.State>) {
 
     this.loginConfig = environment.loginConfig;
     this.loginForm = this.fb.group({
@@ -41,12 +46,16 @@ export class LoginComponent implements OnInit, OnDestroy {
 
     this.store
       .pipe(
-        select('login'),
+        select(fromLogin.getLoginData),
         takeUntil(this.destroy$))
       .subscribe(
         data => {
+          console.log(data);
           if (data) {
-            this.loginForm.patchValue({...data.login});
+            this.loginForm.patchValue({
+              ...data,
+              userName: data.username,
+            });
           }
         },
         () => this.showModal('something wrong here')
@@ -63,11 +72,19 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   submit(){
     if (this.isValidLogin()){
-      this.store.dispatch(new loginActions.SaveLogin(this.loginForm.value));
+      this.store.dispatch(new loginActions.SaveLogin({
+        username: this.loginForm.value.userName,
+        email: this.loginForm.value.email,
+        password: this.loginForm.value.password,
+      }));
       this.authService.authorize();
       this.router.navigate(['/profile']);
     } else {
-      this.store.dispatch(new loginActions.SaveLogin(this.loginForm.value));
+      this.store.dispatch(new loginActions.SaveLogin({
+        username: this.loginForm.value.userName,
+        email: this.loginForm.value.email,
+        password: this.loginForm.value.password,
+      }));
       this.authService.unauthorize();
       this.appService.newsChangeColor = false;
       this.showModal('Username or password is incorrect');

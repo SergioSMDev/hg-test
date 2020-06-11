@@ -7,7 +7,7 @@ import {Subject} from 'rxjs';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.css']
+  styleUrls: ['./profile.component.css'],
 })
 export class ProfileComponent implements OnInit, OnDestroy {
   profileData: Profile;
@@ -31,12 +31,13 @@ export class ProfileComponent implements OnInit, OnDestroy {
         takeUntil(this.destroy$))
       .subscribe(
         data => {
+          console.log(data);
           if (data) {
-            this.profileData.email = data.login.email || '';
-            this.profileData.name = data.login.userName || '';
+            this.profileData.name = data.username || '';
+            this.profileData.email = data.email || '';
           }
         },
-        () => console.error('something wrong here')
+        (err) => console.error('something wrong here: ', err)
       );
   }
 
